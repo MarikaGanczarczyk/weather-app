@@ -63,6 +63,7 @@ function Weather() {
 
   return (
     <div className="weather">
+        <div className="weather-box">
       <div className="search-bar">
         <input
           type="text"
@@ -107,6 +108,7 @@ function Weather() {
       ) : (
         <p>Loading...</p>
       )}
+      </div>
     </div>
   );
 }
