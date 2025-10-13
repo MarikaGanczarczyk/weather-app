@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./WeeklyForecast.css";
 
 function WeeklyForecast() {
-  const [forecastData, setForecastData] = useState(null)
+  const [forecastData, setForecastData] = useState(null);
   const [city, setCity] = useState("London");
 
   const API_KEY = "2C847GG38NSNX88CCKHKH2588";
-
-
 
   const fetchWeeklyWeather = async (cityName) => {
     try {
@@ -24,24 +22,36 @@ function WeeklyForecast() {
       alert("Could not fetch weather data. Please try again.");
     }
   };
-    useEffect(() => {
-      fetchWeeklyWeather(city);
-    }, []);
+  useEffect(() => {
+    fetchWeeklyWeather(city);
+  }, []);
 
-  return <div>
-    <div className="weekly-forecast">
-      <h2>7-Day Forecast</h2>
-      <div className="forecast-cards">
-        {forecastData?.days.slice(0, 7).map((day, index) => (
-          <div key={index} className="day-card">
-            <p>{new Date(day.datetime).toLocaleDateString('en-US', { weekday: 'short' })}</p>
-            {/* <img src={} alt="" /> */}
-            <p>{Math.round(day.tempmax)}° / {Math.round(day.tempmin)}°</p>
-          </div>
-        ))}
+  return (
+    <div>
+      <div className="weekly-forecast">
+        <div className="weather-title">
+         
+          <h2>7-Day Forecast</h2>
+        </div>
+
+        <div className="forecast-cards">
+          {forecastData?.days.slice(0, 7).map((day, index) => (
+            <div key={index} className="day-card">
+              <p>
+                {new Date(day.datetime).toLocaleDateString("en-US", {
+                  weekday: "short",
+                })}
+              </p>
+              {/* <img src={} alt="" /> */}
+              <p>
+                {Math.round(day.tempmax)}° / {Math.round(day.tempmin)}°
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-  </div>;
+  );
 }
 
 export default WeeklyForecast;

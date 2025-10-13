@@ -65,9 +65,10 @@ function Weather() {
   };
 
   return (
+    <>
+      
     <div className="weather">
-        <div className="weather-box">
-      <div className="search-bar">
+        <div className="search-bar">
         <input
           type="text"
           placeholder="Search"
@@ -82,6 +83,8 @@ function Weather() {
           onClick={handleSearch}
         />
       </div>
+        <div className="weather-box">
+    
 
       {weatherData ? (
         <>
@@ -113,6 +116,7 @@ function Weather() {
       )}
       </div>
     </div>
+    </>
   );
 }
 
