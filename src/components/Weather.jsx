@@ -7,26 +7,25 @@ import wind_icon from "../assets/wind.png";
 import cloud_icon from "../assets/cloud.png";
 import drizzle_icon from "../assets/drizzle.png";
 import rainy_icon from "../assets/rainy.png";
-import snow_icon from "../assets/snow.png"
+import snow_icon from "../assets/snow.png";
 
-function Weather() {
+function Weather({ city, setCity }) {
   const [weatherData, setWeatherData] = useState(null);
-  const [city, setCity] = useState("London");
+  const [inputValue, setInputValue] = useState("");
 
   const API_KEY = "2C847GG38NSNX88CCKHKH2588";
 
   const allIcons = {
-    "rain": rainy_icon,
+    rain: rainy_icon,
     "showers-day": drizzle_icon,
     "showers-night": drizzle_icon,
-    "wind": wind_icon,
-    "cloudy": cloud_icon,
+    wind: wind_icon,
+    cloudy: cloud_icon,
     "partly-cloudy-day": cloud_icon,
     "partly-cloudy-night": cloud_icon,
     "clear-day": clear_icon,
     "clear-night": clear_icon,
-    "snow": snow_icon,
-
+    snow: snow_icon,
   };
 
   const fetchWeather = async (cityName) => {
@@ -39,7 +38,6 @@ function Weather() {
       const data = await response.json();
       setWeatherData(data);
       console.log("Weather Data:", data);
- 
     } catch (error) {
       console.error("Error:", error);
       alert("Could not fetch weather data. Please try again.");
@@ -48,13 +46,13 @@ function Weather() {
 
   useEffect(() => {
     fetchWeather(city);
-  }, []);
+  }, [city]);
 
   // Search
   const handleSearch = () => {
-    if (city.trim()) {
-      fetchWeather(city);
-      setCity("");
+    if (inputValue.trim()) {
+      setCity(inputValue);
+      setInputValue("");
     }
   };
   // Enter
@@ -66,60 +64,58 @@ function Weather() {
 
   return (
     <>
-      
-    <div className="weather">
+      <div className="weather">
         <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          onKeyPress={handleKeyPress}
-        />
-        <img
-          className="search-icon"
-          src={search_icon}
-          alt=""
-          onClick={handleSearch}
-        />
-      </div>
+          <input
+            type="text"
+            placeholder="Search"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
+          <img
+            className="search-icon"
+            src={search_icon}
+            alt=""
+            onClick={handleSearch}
+          />
+        </div>
         <div className="weather-box">
-    
+          {weatherData ? (
+            <>
+              <img
+                src={allIcons[weatherData.currentConditions.icon] || clear_icon}
+                alt=""
+                className="weather-icon"
+              />
+              <p className="temperature">
+                {Math.round(weatherData.currentConditions.temp)}°C
+              </p>
+              <p className="location">{weatherData.resolvedAddress}</p>
 
-      {weatherData ? (
-        <>
-          <img src={allIcons[weatherData.currentConditions.icon] || clear_icon} alt="" className="weather-icon" />
-          <p className="temperature">
-            {Math.round(weatherData.currentConditions.temp)}°C
-          </p>
-          <p className="location">{weatherData.resolvedAddress}</p>
+              <div className="weather-data">
+                <div className="col">
+                  <img src={humidity_icon} alt="" className="weather-icon-2" />
+                  <div>
+                    <p>{weatherData.currentConditions.humidity} %</p>
+                    <span>Humidity</span>
+                  </div>
+                </div>
 
-          <div className="weather-data">
-            <div className="col">
-              <img src={humidity_icon} alt="" className="weather-icon-2" />
-              <div>
-                <p>{weatherData.currentConditions.humidity} %</p>
-                <span>Humidity</span>
+                <div className="col">
+                  <img src={wind_icon} alt="" className="weather-icon-2" />
+                  <div>
+                    <p>{weatherData.currentConditions.windspeed} km/h</p>
+                    <span>Wind Speed</span>
+                  </div>
+                </div>
               </div>
-            </div>
-
-
-
-            
-            <div className="col">
-              <img src={wind_icon} alt="" className="weather-icon-2" />
-              <div>
-                <p>{weatherData.currentConditions.windspeed} km/h</p>
-                <span>Wind Speed</span>
-              </div>
-            </div>
-          </div>
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
+            </>
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 }
