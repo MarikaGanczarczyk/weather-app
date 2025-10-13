@@ -7,6 +7,7 @@ import wind_icon from "../assets/wind.png";
 import cloud_icon from "../assets/cloud.png";
 import drizzle_icon from "../assets/drizzle.png";
 import rainy_icon from "../assets/rainy.png";
+import snow_icon from "../assets/snow.png"
 
 function Weather() {
   const [weatherData, setWeatherData] = useState(null);
@@ -24,6 +25,8 @@ function Weather() {
     "partly-cloudy-night": cloud_icon,
     "clear-day": clear_icon,
     "clear-night": clear_icon,
+    "snow": snow_icon,
+
   };
 
   const fetchWeather = async (cityName) => {
