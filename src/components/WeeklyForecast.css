@@ -1,5 +1,5 @@
 .weekly-forecast{
-    min-height: 700px; 
+    min-height: 750px; 
     overflow: hidden;
   padding: 40px;
   border-radius: 20px;
@@ -17,16 +17,16 @@
 
  .forecast-cards {
   display: flex;
-  flex-direction: column; /* ✅ Pionowo */
+  flex-direction: column; 
    gap: 15px;
-  align-items: center; /* ✅ Wyśrodkuj */
+  align-items: center; 
  } 
 
  .day-card {
-   /* background-color: rgba(225, 225, 225, 0.7); */
+   
   border-radius: 15px;
   padding: 20px;
-  width: 300px; /* ✅ Stała szerokość */
+  width: 300px; 
    display: flex; 
    justify-content: space-between;
   align-items: center;

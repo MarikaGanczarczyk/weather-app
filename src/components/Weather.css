@@ -15,7 +15,7 @@
 .weather-box{
     padding: 40px;
   border-radius: 20px;
- 
+ gap: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +36,7 @@
   color: #686565;
    background-color: #fff;
    width: 80%;
-   
+   font-size: 18px;
 }
 .search-bar img{
     width: 50px;
@@ -66,13 +66,19 @@
     color: #fff;
     display: flex;
     justify-content: space-between;
-
+    gap: 25px;
+    
 }
 .weather-data .col{
+  flex: 1;
     display: flex;
     align-items: flex-start;
     gap: 12px;
     font-size: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    
 
 }
 .weather-data .col span{
@@ -82,7 +88,7 @@
 
 }
 .weather-data .col img{
-width: 30px;
+width: 54px;
 margin-top: 10px;
 }
 

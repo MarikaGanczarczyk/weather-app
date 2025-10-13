@@ -102,6 +102,10 @@ function Weather() {
                 <span>Humidity</span>
               </div>
             </div>
+
+
+
+            
             <div className="col">
               <img src={wind_icon} alt="" className="weather-icon-2" />
               <div>
