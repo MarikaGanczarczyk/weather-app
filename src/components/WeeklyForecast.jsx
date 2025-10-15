@@ -9,8 +9,9 @@ import drizzle_icon from "../assets/drizzle.png";
 import rainy_icon from "../assets/rainy.png";
 import snow_icon from "../assets/snow.png";
 
-function WeeklyForecast({ city }) {
+function WeeklyForecast({ city, isCelsius }) {
   const [forecastData, setForecastData] = useState(null);
+  
 
   const API_KEY = "2C847GG38NSNX88CCKHKH2588";
   const allIcons = {
@@ -45,6 +46,15 @@ function WeeklyForecast({ city }) {
     fetchWeeklyWeather(city);
   }, [city]);
 
+  // Temp
+  const convertTemp = (temp) => {
+    if (isCelsius) {
+      return Math.round(temp);
+    } else {
+      return Math.round((temp * 9) / 5 + 32);
+    }
+  };
+
   return (
     <div>
       <div className="weekly-forecast">
@@ -67,7 +77,8 @@ function WeeklyForecast({ city }) {
               </p>
 
               <p>
-                {Math.round(day.tempmax)}° / {Math.round(day.tempmin)}°
+                {convertTemp(day.tempmax)}° {isCelsius ? "C" : "F"} /{" "}
+                {convertTemp(day.tempmin)}°{isCelsius ? "C" : "F"}
               </p>
             </div>
           ))}

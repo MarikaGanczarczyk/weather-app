@@ -9,10 +9,10 @@ import drizzle_icon from "../assets/drizzle.png";
 import rainy_icon from "../assets/rainy.png";
 import snow_icon from "../assets/snow.png";
 
-function Weather({ city, setCity }) {
+function Weather({ city, setCity, isCelsius, setIsCelsius }) {
   const [weatherData, setWeatherData] = useState(null);
   const [inputValue, setInputValue] = useState("");
-  const [isCelsius, setIsCelsius] = useState(null);
+  
 
   const API_KEY = "2C847GG38NSNX88CCKHKH2588";
 
@@ -112,9 +112,7 @@ function Weather({ city, setCity }) {
                 className="weather-icon"
               />
               <p className="temperature">
-                {" "}
-                {convertTemp(weatherData.currentConditions.temp)}°
-                {isCelsius ? "C" : "F"}
+                 {convertTemp(weatherData.currentConditions.temp)}°{isCelsius ? 'C' : 'F'}
               </p>
               <p className="location">{weatherData.resolvedAddress}</p>
 
