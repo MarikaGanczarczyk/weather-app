@@ -11,8 +11,6 @@ import snow_icon from "../assets/snow.png";
 
 function Weather({ city, isCelsius, setIsCelsius }) {
   const [weatherData, setWeatherData] = useState(null);
-  
-  
 
   const API_KEY = "2C847GG38NSNX88CCKHKH2588";
 
@@ -49,7 +47,6 @@ function Weather({ city, isCelsius, setIsCelsius }) {
     fetchWeather(city);
   }, [city]);
 
-
   // Temp
   const convertTemp = (temp) => {
     if (isCelsius) {
@@ -62,18 +59,26 @@ function Weather({ city, isCelsius, setIsCelsius }) {
   return (
     <>
       <div className="weather">
-        
-        
+      
         <div className="weather-box">
+             
           {weatherData ? (
             <>
+             <div className="date">
+          {new Date().toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+          })}
+        </div>
               <img
                 src={allIcons[weatherData.currentConditions.icon] || clear_icon}
                 alt=""
                 className="weather-icon"
               />
               <p className="temperature">
-                 {convertTemp(weatherData.currentConditions.temp)}°{isCelsius ? 'C' : 'F'}
+                {convertTemp(weatherData.currentConditions.temp)}°
+                {isCelsius ? "C" : "F"}
               </p>
               <p className="location">{weatherData.resolvedAddress}</p>
 
