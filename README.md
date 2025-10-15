@@ -1,16 +1,34 @@
-# React + Vite
+🌤️ Weather Live Forecast
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Weather Live Forecast is a simple and responsive weather application built with React and CSS.
+It uses a public Weather API to fetch live weather data for the selected city — showing both the current weather and a 7-day forecast.
 
-Currently, two official plugins are available:
+🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌍 Search for any city to view its weather
 
-## React Compiler
+🌡️ Displays temperature, humidity, wind speed, and conditions
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+📆 Shows a 7-day weather forecast
 
-## Expanding the ESLint configuration
+🔄 Live data fetched from a weather API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🎨 Clean and responsive UI styled with CSS
+
+🌞 Option to view temperatures in Celsius or Fahrenheit (if implemented)
+
+🛠️ Technologies Used
+
+React.js – for building the interactive UI
+
+CSS – for layout and styling
+
+Weather API – to fetch real-time weather data (e.g., OpenWeatherMap)
+
+ ⚙️ Installation & Setup
+
+1. Clone this repository: https://github.com/MarikaGanczarczyk/weather-app.git
+2. Navigate into the project folder: cd Weather-app
+3. Install dependencies: npm install
+4. Start the development server: npm run dev
+5. Open your browser at  http://localhost:5173/
