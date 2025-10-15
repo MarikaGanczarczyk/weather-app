@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Weather.css";
-import search_icon from "../assets/search.png";
+
 import clear_icon from "../assets/sun.png";
 import humidity_icon from "../assets/humidity.png";
 import wind_icon from "../assets/wind.png";
@@ -9,9 +9,9 @@ import drizzle_icon from "../assets/drizzle.png";
 import rainy_icon from "../assets/rainy.png";
 import snow_icon from "../assets/snow.png";
 
-function Weather({ city, setCity, isCelsius, setIsCelsius }) {
+function Weather({ city, isCelsius, setIsCelsius }) {
   const [weatherData, setWeatherData] = useState(null);
-  const [inputValue, setInputValue] = useState("");
+  
   
 
   const API_KEY = "2C847GG38NSNX88CCKHKH2588";
@@ -49,19 +49,7 @@ function Weather({ city, setCity, isCelsius, setIsCelsius }) {
     fetchWeather(city);
   }, [city]);
 
-  // Search
-  const handleSearch = () => {
-    if (inputValue.trim()) {
-      setCity(inputValue);
-      setInputValue("");
-    }
-  };
-  // Enter
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
+
   // Temp
   const convertTemp = (temp) => {
     if (isCelsius) {
@@ -74,35 +62,8 @@ function Weather({ city, setCity, isCelsius, setIsCelsius }) {
   return (
     <>
       <div className="weather">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={handleKeyPress}
-          />
-          <img
-            className="search-icon"
-            src={search_icon}
-            alt=""
-            onClick={handleSearch}
-          />
-        </div>
-        <div className="temp-toggle">
-          <button
-            className={isCelsius ? "active" : ""}
-            onClick={() => setIsCelsius(true)}
-          >
-            °C
-          </button>
-          <button
-            className={!isCelsius ? "active" : ""}
-            onClick={() => setIsCelsius(false)}
-          >
-            °F
-          </button>
-        </div>
+        
+        
         <div className="weather-box">
           {weatherData ? (
             <>
