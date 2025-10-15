@@ -12,6 +12,7 @@ import snow_icon from "../assets/snow.png";
 function Weather({ city, setCity }) {
   const [weatherData, setWeatherData] = useState(null);
   const [inputValue, setInputValue] = useState("");
+  const [isCelsius, setIsCelsius] = useState(null);
 
   const API_KEY = "2C847GG38NSNX88CCKHKH2588";
 
@@ -61,6 +62,14 @@ function Weather({ city, setCity }) {
       handleSearch();
     }
   };
+  // Temp
+  const convertTemp = (temp) => {
+    if (isCelsius) {
+      return Math.round(temp);
+    } else {
+      return Math.round((temp * 9) / 5 + 32);
+    }
+  };
 
   return (
     <>
@@ -80,6 +89,20 @@ function Weather({ city, setCity }) {
             onClick={handleSearch}
           />
         </div>
+        <div className="temp-toggle">
+          <button
+            className={isCelsius ? "active" : ""}
+            onClick={() => setIsCelsius(true)}
+          >
+            °C
+          </button>
+          <button
+            className={!isCelsius ? "active" : ""}
+            onClick={() => setIsCelsius(false)}
+          >
+            °F
+          </button>
+        </div>
         <div className="weather-box">
           {weatherData ? (
             <>
@@ -89,7 +112,9 @@ function Weather({ city, setCity }) {
                 className="weather-icon"
               />
               <p className="temperature">
-                {Math.round(weatherData.currentConditions.temp)}°C
+                {" "}
+                {convertTemp(weatherData.currentConditions.temp)}°
+                {isCelsius ? "C" : "F"}
               </p>
               <p className="location">{weatherData.resolvedAddress}</p>
 
