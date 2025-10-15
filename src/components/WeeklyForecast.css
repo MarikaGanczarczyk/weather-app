@@ -3,7 +3,7 @@
     overflow: hidden;
   padding: 40px;
   border-radius: 20px;
-      background-color: rgb(225 225 225 / 70%);
+      background-color: rgba(208, 204, 204, 0.7);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,4 +45,42 @@
 .day-card-icon{
     width: 50px;
     height: 50px;
+}
+
+@media (max-width: 768px) {
+  .weekly-forecast {
+    max-width: 100%;
+    padding: 25px 15px;
+    min-height: auto;
+    border-radius: 15px;
+  }
+
+  .weather-title {
+    font-size: 16px;
+    padding-bottom: 15px;
+  }
+
+  .forecast-cards {
+    gap: 12px;
+  }
+
+  .day-card {
+    max-width: 100%;
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .day-card p {
+    font-size: 18px;
+  }
+
+  .day-card-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .day-card:hover {
+    transform: translateY(-3px);
+  }
 }
