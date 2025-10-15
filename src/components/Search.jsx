@@ -20,7 +20,7 @@ function Search({setCity,setIsCelsius, isCelsius}) {
     }
   };
   return (
-    <div>
+    <div className="top-bar">
       <div className="search-bar">
                 <input
                   type="text"
@@ -30,12 +30,7 @@ function Search({setCity,setIsCelsius, isCelsius}) {
                   onKeyPress={handleKeyPress}
                   onClick={handleSearch}
                 />
-                {/* <img
-                  className="search-icon"
-                  src={search_icon}
-                  alt=""
-                  
-                /> */}
+              
               </div>
               <div className="temp-toggle">
           <button
