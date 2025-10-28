@@ -10,7 +10,7 @@ function App() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://images.pexels.com/photos/1431822/pexels-photo-1431822.jpeg')`,
+          backgroundImage: `url('https://images.pexels.com/photos/258173/pexels-photo-258173.jpeg')`,
         }}
       >
         <div className="absolute inset-0 bg-linear-to-br from-blue-900/400 via-purple-900/30 to-indigo-900/40"></div>
