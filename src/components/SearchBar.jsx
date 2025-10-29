@@ -20,7 +20,7 @@ function SearchBar() {
           </button> */}
         </div>
       </form>
-      <div className="absolute top-full left-0 right-0 mt-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden z-50">
+      {/* <div className="absolute top-full left-0 right-0 mt-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden z-50">
         <div className="p-6 text-center text-white/70">
           <div className="animate-spin rounded-full h-6 w-6 border-2 border-white/30 border-t-white mx-auto"></div>
           <p>Search Cities....</p>
@@ -33,7 +33,7 @@ City Name
 <div className="text-sm text-white/60 ">Country</div>
 <Search className="w-4 h-4 text-white/40 group-hover:text-white/60  transition-all"/>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
