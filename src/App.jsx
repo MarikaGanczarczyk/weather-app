@@ -2,6 +2,8 @@ import "./index.css";
 import Weather from "./components/Weather";
 import WeeklyForecast from "./components/WeeklyForecast";
 import SearchBar from "./components/SearchBar";
+import TemperatureToggler from "./components/TemperatureToggler";
+import WeatherCard from "./components/WeatherCard";
 
 function App() {
   return (
@@ -37,7 +39,15 @@ function App() {
             
             <div className="flex flex-col lg:flex-row items-center justify-center space-y-6  lg:space-y-6 mb-12">
               <SearchBar />
+              <TemperatureToggler/>
             </div>
+          </div>
+
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+            <div className="xl:col-span-2">
+<WeatherCard/>
+            </div>
+
           </div>
         </div>
       </div>
