@@ -4,6 +4,7 @@ import WeeklyForecast from "./components/WeeklyForecast";
 import SearchBar from "./components/SearchBar";
 import TemperatureToggler from "./components/TemperatureToggler";
 import WeatherCard from "./components/WeatherCard";
+import WeatherForecast from "./components/WeatherForecast";
 
 function App() {
   return (
@@ -36,18 +37,20 @@ function App() {
                 worldwide
               </p>
             </div>
-            
+
             <div className="flex flex-col lg:flex-row items-center justify-center space-y-6  lg:space-y-6 mb-12">
               <SearchBar />
-              <TemperatureToggler/>
+              <TemperatureToggler />
             </div>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
             <div className="xl:col-span-2">
-<WeatherCard/>
+              <WeatherCard />
             </div>
-
+            <div className="xl:col-span-1">
+              <WeatherForecast />
+            </div>
           </div>
         </div>
       </div>
