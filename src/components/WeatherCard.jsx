@@ -1,7 +1,95 @@
-import { MapPin, Sunset } from "lucide-react";
-import React from "react";
+import { MapPin, Sunset, Sunrise, Droplets, Wind, Eye, Gauge } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
-function WeatherCard() {
+function WeatherCard({city}) {
+   const [weatherData, setWeatherData] = useState(null);
+   const [loading, setLoading] = useState(true);
+
+const API_KEY = "2C847GG38NSNX88CCKHKH2588";
+
+ const fetchWeather = async (cityName) => {
+    try {
+      const response = await fetch(
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityName}?unitGroup=metric&key=${API_KEY}&contentType=json`
+      );
+      if (!response.ok) throw new Error("City not found");
+
+      const data = await response.json();
+      setWeatherData(data);
+      console.log("Weather Data:", data);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Could not fetch weather data. Please try again.");
+    }finally {
+      setLoading(false)
+    }
+  };
+useEffect(() => {
+    fetchWeather(city);
+  }, [city]);
+ if (loading) {
+    return (
+      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+        <div className="text-white text-center">Loading weather data...</div>
+      </div>
+    );
+  }
+
+  if (!weatherData) {
+    return (
+      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+        <div className="text-white text-center">No weather data available</div>
+      </div>
+    );
+  }
+
+  const currentDay = weatherData.days[0];
+  const current = weatherData.currentConditions;
+
+  
+  const formatTime = (timeString) => {
+    if (!timeString) return "";
+    return timeString.slice(0, 5);
+  };
+ const weatherStats = [
+    {
+      icon: Droplets,
+      label: "Humidity",
+      value: `${current.humidity}%`,
+      color: "text-blue-400"
+    },
+    {
+      icon: Wind,
+      label: "Wind Speed",
+      value: `${current.windspeed} km/h`,
+      color: "text-cyan-400"
+    },
+    {
+      icon: Eye,
+      label: "Visibility",
+      value: `${current.visibility} km`,
+      color: "text-purple-400"
+    },
+    {
+      icon: Gauge,
+      label: "Pressure",
+      value: `${current.pressure} mb`,
+      color: "text-pink-400"
+    },
+    {
+      icon: Droplets,
+      label: "Precipitation",
+      value: `${current.precip || 0} mm`,
+      color: "text-indigo-400"
+    },
+    {
+      icon: Wind,
+      label: "UV Index",
+      value: current.uvindex || "N/A",
+      color: "text-yellow-400"
+    }
+  ];
+ 
   return (
     <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl hover:bg-white/15 transition-all duration-500">
       {/*Header */}
@@ -11,27 +99,32 @@ function WeatherCard() {
             <MapPin className="w-5 h-5 text-white/80" />
           </div>
           <div>
-            <h2 className="text-white font-semibold text-lg">Weather Name</h2>
-            <p className="text-white/60">Weather Country</p>
+            <h2 className="text-white font-semibold text-lg">{weatherData.resolvedAddress}</h2>
+            <p className="text-white/60">{weatherData.timezone}</p>
           </div>
         </div>
         <div className="text-right">
-          <div className="text-white/70 text-sm"></div>
-          <div className="text-white/50 text-xs"></div>
+          <div className="text-white/70 text-sm">{new Date().toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+          })}</div>
+          <div className="text-white/50 text-xs"> </div>
         </div>
       </div>
       {/* Main Weather Display */}
       <div className="flex items-center justify-between mb-10">
         <div className="flex-1">
           <div className="text-7xl font-bold text-white mb-3 tracking-tight">
-            Main Temp
+            {Math.round(current.temp)}°C
+                
           </div>
           <div className="text-white/90 text-xl capitalize mb-2 font-medium">
-            Weather Description
+           {current.conditions}
           </div>
           <div className="flex items-center space-x-4 text-white/60 text-sm">
-            <span>Max Temp</span>
-            <span>Min Temp</span>
+            <span>H: {Math.round(currentDay.tempmax)}°</span>
+            <span>L: {Math.round(currentDay.tempmin)}°</span>
           </div>
         </div>
         <div className="text-white/90 transform hover:scale-110 transition-transform duration-300"></div>
