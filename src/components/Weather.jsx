@@ -47,7 +47,7 @@ function Weather({ city, isCelsius, setIsCelsius }) {
     fetchWeather(city);
   }, [city]);
 
-  // Temp
+  
   const convertTemp = (temp) => {
     if (isCelsius) {
       return Math.round(temp);
