@@ -35,6 +35,7 @@ function WeatherCard({ city,}) {
   useEffect(() => {
     fetchWeather(city);
   }, [city]);
+  
   if (loading) {
     return (
       <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">

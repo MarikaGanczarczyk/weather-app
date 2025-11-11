@@ -1,6 +1,5 @@
 import "./index.css";
-import Weather from "./components/Weather";
-import WeeklyForecast from "./components/WeeklyForecast";
+
 import SearchBar from "./components/SearchBar";
 import TemperatureToggler from "./components/TemperatureToggler";
 import WeatherCard from "./components/WeatherCard";
@@ -10,7 +9,7 @@ import { useState } from "react";
 function App() {
     const [city, setCity] = useState("London");
  
-  const [isCelsius, setIsCelsius] = useState(true);
+
 
 
 
