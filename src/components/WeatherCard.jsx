@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
-function WeatherCard({ city }) {
+function WeatherCard({ city,}) {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
 

@@ -5,8 +5,15 @@ import SearchBar from "./components/SearchBar";
 import TemperatureToggler from "./components/TemperatureToggler";
 import WeatherCard from "./components/WeatherCard";
 import WeatherForecast from "./components/WeatherForecast";
+import { useState } from "react";
 
 function App() {
+    const [city, setCity] = useState("London");
+ 
+  const [isCelsius, setIsCelsius] = useState(true);
+
+
+
   return (
     <div className=" min-h-screen relative overflow-hidden ">
       {/* Bacground image*/}
@@ -39,14 +46,14 @@ function App() {
             </div>
 
             <div className="flex flex-col lg:flex-row items-center justify-center space-y-6  lg:space-y-6 mb-12">
-              <SearchBar />
+              <SearchBar setCity={setCity}/>
               <TemperatureToggler />
             </div>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
             <div className="xl:col-span-2">
-              <WeatherCard />
+              <WeatherCard city={city}/>
             </div>
             <div className="xl:col-span-1">
               <WeatherForecast />
