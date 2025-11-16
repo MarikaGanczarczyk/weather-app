@@ -9,11 +9,17 @@ import {
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
-function WeatherCard({ city,}) {
+function WeatherCard({ city, isCelsius}) {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+
 
   const API_KEY = "2C847GG38NSNX88CCKHKH2588";
+    const celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
+      const convertTemp = (temp) => {
+    return isCelsius ? temp : celsiusToFahrenheit(temp);
+  };
 
   const fetchWeather = async (cityName) => {
     try {
@@ -128,8 +134,9 @@ function WeatherCard({ city,}) {
       <div className="flex items-center justify-between mb-10">
         <div className="flex-1">
           <div className="text-7xl font-bold text-white mb-3 tracking-tight">
-            {Math.round(current.temp)}°C
+             {Math.round(convertTemp(current.temp))}°{isCelsius ? 'C' : 'F'}
           </div>
+        
           <div className="text-white/90 text-xl capitalize mb-2 font-medium">
             {currentDay.conditions}
           </div>
