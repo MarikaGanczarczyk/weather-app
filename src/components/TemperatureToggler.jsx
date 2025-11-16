@@ -1,19 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function TemperatureToggler() {
+const TemperatureToggle = () => {
+  const [unit, setUnit] = useState("C");
+
   return (
-    <div className='big-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-1 shadow-lg'>
-      <div className='flex items-center'>
-        <button className={'px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300'}>
-°C
-        </button>
-        <button className={'px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300'}>
-°F
-        </button>
+    <div className="flex items-center gap-3">
+      <button
+        onClick={() => setUnit("C")}
+        className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 
+          ${unit === "C" ? "bg-white/20 text-white scale-105" : "text-white/70"}`}
+      >
+        °C
+      </button>
 
-      </div>
+      <button
+        onClick={() => setUnit("F")}
+        className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 
+          ${unit === "F" ? "bg-white/20 text-white scale-105" : "text-white/70"}`}
+      >
+        °F
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default TemperatureToggler
+
+export default TemperatureToggle

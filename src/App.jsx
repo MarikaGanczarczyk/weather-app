@@ -7,11 +7,7 @@ import WeatherForecast from "./components/WeatherForecast";
 import { useState } from "react";
 
 function App() {
-    const [city, setCity] = useState("London");
- 
-
-
-
+  const [city, setCity] = useState("London");
 
   return (
     <div className=" min-h-screen relative overflow-hidden ">
@@ -44,15 +40,17 @@ function App() {
               </p>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-center justify-center space-y-6  lg:space-y-6 mb-12">
-              <SearchBar setCity={setCity}/>
-              <TemperatureToggler />
+            <div className="flex flex-col lg:flex-row items-center justify-center space-y-6  lg:space-y-6 mb-12 gap-4 ">
+              <SearchBar setCity={setCity} />
+              <div className="lg:-mt-4">
+                <TemperatureToggler />
+              </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
             <div className="xl:col-span-2">
-              <WeatherCard city={city}/>
+              <WeatherCard city={city} />
             </div>
             <div className="xl:col-span-1">
               <WeatherForecast />
