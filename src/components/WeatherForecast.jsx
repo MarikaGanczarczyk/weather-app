@@ -1,7 +1,38 @@
 import { Calendar, Droplets } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function WeatherForecast() {
+function WeatherForecast({city, isCelsius}) {
+   const [forecastData, setForecastData] = useState(null);
+  //  const [loading, setLoading] = useState(true);
+
+
+  const API_KEY = "2C847GG38NSNX88CCKHKH2588";
+    const celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
+      const convertTemp = (temp) => {
+    return isCelsius ? temp : celsiusToFahrenheit(temp);
+  };
+
+    const fetchWeather = async (cityName) => {
+      try {
+        const response = await fetch(
+          `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityName}?unitGroup=metric&key=${API_KEY}&contentType=json`
+        );
+        if (!response.ok) throw new Error("City not found");
+  
+        const data = await response.json();
+        setForecastData(data);
+        console.log("Weather Data:", data);
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Could not fetch weather data. Please try again.");
+      } 
+    };
+    useEffect(() => {
+      fetchWeather(city);
+    }, [city]);
+ 
+
+    
   return (
     <div className="bg-white/10 backdrop-blur-xl border-white/20 rounded-3xl p-8 shadow-2xl">
       <div className="flex items-center space-x-3 mb-8">
