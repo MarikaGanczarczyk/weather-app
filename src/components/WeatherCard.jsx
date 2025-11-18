@@ -39,6 +39,7 @@ function WeatherCard({ city, isCelsius}) {
     }
   };
   useEffect(() => {
+    
     fetchWeather(city);
   }, [city]);
   

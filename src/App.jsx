@@ -54,7 +54,7 @@ function App() {
               <WeatherCard city={city} isCelsius={isCelsius} />
             </div>
             <div className="xl:col-span-1">
-              <WeatherForecast />
+              <WeatherForecast isCelsius={isCelsius} city={city}/>
             </div>
           </div>
         </div>
