@@ -7,8 +7,6 @@ function WeatherForecast({ city, isCelsius }) {
 
   const API_KEY = "2C847GG38NSNX88CCKHKH2588";
 
- 
-
   const fetchWeather = async (cityName) => {
     try {
       const response = await fetch(
@@ -24,10 +22,9 @@ function WeatherForecast({ city, isCelsius }) {
     }
   };
   useEffect(() => {
-   
     fetchWeather(city);
   }, [city]);
-   // Temp
+  // Temp
   const convertTemp = (temp) => {
     if (isCelsius) {
       return Math.round(temp);
@@ -35,7 +32,6 @@ function WeatherForecast({ city, isCelsius }) {
       return Math.round((temp * 9) / 5 + 32);
     }
   };
-
 
   return (
     <div className="bg-white/10 backdrop-blur-xl border-white/20 rounded-3xl p-8 shadow-2xl">
@@ -48,37 +44,36 @@ function WeatherForecast({ city, isCelsius }) {
       <div className="space-y-4">
         {/*Map method  */}
         {forecastData?.days.slice(0, 5).map((day, index) => (
-
-        <div key={index} className="flex items-center justify-between p-5 bg-white/ backdrop-blur-sm rounded-2xl hover:bg-white/5 transition-all duration-300 group border border-white/10">
-          <div className="flex items-center space-x-5 flex-1">
-
-            <div className="text-white/90 group-hover:text-white transition-all transform group-hover:scale-110 duration">
-              {new Date(day.datetime).toLocaleDateString("en-US", {
-              weekday: "long",
-            })}
+          <div
+            key={index}
+            className="flex items-center justify-between p-5 bg-white/ backdrop-blur-sm rounded-2xl hover:bg-white/5 transition-all duration-300 group border border-white/10"
+          >
+            <div className="flex items-center space-x-5 flex-1">
+              <div className="text-white/90 group-hover:text-white transition-all transform group-hover:scale-110 duration">
+                {new Date(day.datetime).toLocaleDateString("en-US", {
+                  weekday: "long",
+                })}
+              </div>
             </div>
 
-            <div className="flex-1">
-              {/* <div className="text-white font-semibold text-lg">  {day.conditions}</div> */}
+            <div className="flex items-center space-x-8">
+              <div className="flex items-center space-x-2 text-white/60">
+                <Droplets className="w-4 h-4 text-blue-300" />
+                <span className="text-sm font-medium ">{day.humidity}%</span>
+              </div>
 
-              <div className="text-white/70 text-sm capitalize font-medium">
-          
+              <div className="text-right space-x-4">
+                <div className="text-white font-bold text-xl">
+                  {" "}
+                  {convertTemp(day.temp)}° {isCelsius ? "C" : "F"}{" "}
+                </div>
+                <div className="  text-white/60 text-sm space-x-2 ">
+                  <span>H: {Math.round(day.tempmax)}°</span>
+                  <span>L: {Math.round(day.tempmin)}°</span>
+                </div>
               </div>
             </div>
           </div>
-
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2 text-white/60">
-              <Droplets className="w-4 h-4 text-blue-300" />
-              <span className="text-sm font-medium">{day.humidity}%</span>
-            </div>
-
-            <div className="text-right">
-              <div className="text-white font-bold text-xl"> {convertTemp(day.temp)}° {isCelsius ? "C" : "F"} </div>
-              <div className="text-white text0sm font-medium">Main Temp</div>
-            </div>
-          </div>
-        </div>
         ))}
       </div>
     </div>
