@@ -85,30 +85,13 @@ function WeatherCard({ city, isCelsius}) {
       value: `${current.visibility} km`,
       color: "text-purple-400",
     },
-    {
-      icon: Gauge,
-      label: "Pressure",
-      value: `${current.pressure} mb`,
-      color: "text-pink-400",
-    },
-    {
-      icon: Droplets,
-      label: "Precipitation",
-      value: `${current.precip || 0} mm`,
-      color: "text-indigo-400",
-    },
-    {
-      icon: Wind,
-      label: "UV Index",
-      value: current.uvindex || "N/A",
-      color: "text-yellow-400",
-    },
+ 
   ];
 
   return (
     <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl hover:bg-white/15 transition-all duration-500">
       {/*Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-30">
         <div className="flex items-center space-x-3">
           <div className="p-2 bg-white/10 rounded-full">
             <MapPin className="w-5 h-5 text-white/80" />
