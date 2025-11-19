@@ -104,7 +104,7 @@ function WeatherCard({ city, isCelsius}) {
           </div>
         </div>
         <div className="text-right">
-          <div className="text-white/70 text-sm">
+          <div className="text-white/70 text-m">
             {new Date().toLocaleDateString("en-US", {
               weekday: "long",
               month: "long",
@@ -117,7 +117,7 @@ function WeatherCard({ city, isCelsius}) {
       {/* Main Weather Display */}
       <div className="flex items-center justify-between mb-10">
         <div className="flex-1">
-          <div className="text-7xl font-bold text-white mb-3 tracking-tight">
+          <div className="text-7xl font-bold text-white mb-5 -mt-3 tracking-tight">
              {Math.round(convertTemp(current.temp))}°{isCelsius ? 'C' : 'F'}
           </div>
         
@@ -129,7 +129,7 @@ function WeatherCard({ city, isCelsius}) {
             <span>L: {Math.round(currentDay.tempmin)}°</span>
           </div>
         </div>
-        <div className="text-white/90 transform hover:scale-110 transition-transform duration-300">
+        <div className="text-white/90 transform hover:scale-110 transition-transform duration-300 ">
           {currentDay.icon === "clear-day" && "☀️"}
           {currentDay.icon === "clear-night" && "🌙"}
           {currentDay.icon === "cloudy" && "☁️"}
@@ -151,7 +151,7 @@ function WeatherCard({ city, isCelsius}) {
         </div>
       </div>
       {/*Weather Stats Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6 mt-14">
         {weatherStats.map((stat, index) => (
           <div
             key={index}
